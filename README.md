@@ -1,6 +1,6 @@
 ### compose2ecs
 
-A tool that transforms a `docker-compose.yml` into a `task-definition.json`.
+A tool that transforms a `docker-compose.yml` into an ECS `task-definition.json`.
 
 Uses docker labels for properties that don't translate to docker compose.
 
