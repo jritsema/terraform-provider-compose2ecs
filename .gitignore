@@ -3,3 +3,4 @@ task-definition.json
 terraform-provider-compose2ecs
 *.tfstate
 *.tfstate.backup
+main.tf

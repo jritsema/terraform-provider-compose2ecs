@@ -15,7 +15,7 @@ resource "aws_ecs_task_definition" "app" {
 
 *note that you can specify `compose_file` if you want to override the default compose file name (`docker-compose.yml`), for example...
 
-```
+```terraform
 data "compose2ecs" "compose" {
   compose_file = "my-compose.yml"
 }
@@ -23,7 +23,7 @@ data "compose2ecs" "compose" {
 
 where `docker-compose.yml` might look like...
 
-```
+```yaml
 version: "2"
 services:  
   web:
@@ -38,7 +38,7 @@ services:
 
 and the outputted container_definitions would be...
 
-```
+```json
 [
   {
     "Name": "web",    
