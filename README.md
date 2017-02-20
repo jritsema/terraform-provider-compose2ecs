@@ -1,10 +1,27 @@
-### compose2ecs
+### terraform-provider-compose2ecs
 
-A tool that transforms a `docker-compose.yml` into an ECS `task-definition.json`.
+A terraform plugin containing a datasource that can transform a docker compose file into an ecs task defnition.
 
-Uses docker labels for properties that don't translate to docker compose.
+#### usage
 
-input 
+```terraform
+data "compose2ecs" "compose" {}
+
+resource "aws_ecs_task_definition" "app" {
+  family                = "${var.app}"
+  container_definitions = "${data.compose2ecs.compose.container_definitions}"
+}
+```
+
+*note that you can specify `compose_file` if you want to override the default compose file name (`docker-compose.yml`), for example...
+
+```
+data "compose2ecs" "compose" {
+  compose_file = "my-compose.yml"
+}
+```
+
+where `docker-compose.yml` might look like...
 
 ```
 version: "2"
@@ -19,7 +36,7 @@ services:
       compose2ecs.memoryReservation: "1000"
 ```
 
-output
+and the outputted container_definitions would be...
 
 ```
 [
@@ -35,19 +52,4 @@ output
     ]
   }
 ]
-```
-
------
-
-TODO: convert to a terraform plugin that has a `compose2ecs` datasource, so that this functionality can be done 100% in terraform.
-
-```terraform
-data "compose2ecs" "compose" {
-  compose_file = "${var.compose_file}"
-}
-
-resource "aws_ecs_task_definition" "app" {
-  family                = "${var.app}"
-  container_definitions = "${data.compose2ecs.compose.container_definitions}"
-}
 ```
