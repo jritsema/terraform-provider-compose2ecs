@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"math/rand"
+	"strings"
 
 	"github.com/hashicorp/terraform/helper/schema"
 )
@@ -17,6 +18,11 @@ func dataSourceCompose2Ecs() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "docker-compose.yml",
+			},
+			"services": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
 			},
 			"container_definitions": &schema.Schema{
 				Type:     schema.TypeString,
@@ -39,8 +45,18 @@ func generateRandomID() string {
 func dataSourceCompose2EcsRead(d *schema.ResourceData, meta interface{}) error {
 	d.SetId(generateRandomID())
 
+	composeFile := d.Get("compose_file").(string)
+
+	var services []string
+	set := d.Get("services").(*schema.Set)
+	for _, e := range set.List() {
+		s := e.(string)
+		set.Remove(s)
+		services = append(services, strings.ToLower(s))
+	}
+
 	//transform docker compose file into an ecs task definition
-	taskDefinition, err := transformComposeFile("docker-compose.yml")
+	taskDefinition, err := transformComposeFile(composeFile, services)
 	if err != nil {
 		log.Fatal(err)
 	}

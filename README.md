@@ -1,6 +1,6 @@
 ### terraform-provider-compose2ecs
 
-A terraform plugin containing a datasource that can transform a docker compose file into an ecs task defnition.
+A [terraform](terraform.io) plugin containing a datasource that can transform a [docker compose file](https://docs.docker.com/compose/compose-file/) into an [ecs task definition](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html).
 
 #### usage
 
@@ -13,11 +13,12 @@ resource "aws_ecs_task_definition" "app" {
 }
 ```
 
-*note that you can specify `compose_file` if you want to override the default compose file name (`docker-compose.yml`), for example...
+You can optionally specify `compose_file` if you want to override the default compose file name (defaults to `docker-compose.yml`).  You can also optionally specify which subset of services from the compose file you want to include (defaults to all).
 
 ```terraform
 data "compose2ecs" "compose" {
   compose_file = "my-compose.yml"
+  services     = ["web", "worker"]
 }
 ```
 
@@ -36,7 +37,7 @@ services:
       compose2ecs.memoryReservation: "1000"
 ```
 
-and the outputted container_definitions would be...
+and the outputted `container_definitions` would be...
 
 ```json
 [

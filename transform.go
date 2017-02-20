@@ -14,7 +14,7 @@ import (
 	"github.com/docker/libcompose/project"
 )
 
-func transformComposeFile(composeFile string) (ecs.TaskDefinition, error) {
+func transformComposeFile(composeFile string, services []string) (ecs.TaskDefinition, error) {
 
 	//change compose version to 2 so that libcompose can parse it
 	dat, err := ioutil.ReadFile(composeFile)
@@ -45,6 +45,13 @@ func transformComposeFile(composeFile string) (ecs.TaskDefinition, error) {
 
 	proj := dockerComposeProject.(*project.Project)
 	for _, serviceName := range proj.ServiceConfigs.Keys() {
+
+		//skip this service if the services filter is defined and it's not in the list
+		if len(services) > 0 {
+			if !stringInSlice(serviceName, services) {
+				continue
+			}
+		}
 
 		config, success := dockerComposeProject.GetServiceConfig(serviceName)
 		if !success {
@@ -185,4 +192,13 @@ func transformComposeFile(composeFile string) (ecs.TaskDefinition, error) {
 	}
 
 	return task, nil
+}
+
+func stringInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
 }
