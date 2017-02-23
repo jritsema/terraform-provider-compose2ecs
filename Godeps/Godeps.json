@@ -508,6 +508,11 @@
 			"Rev": "9db46989294621ca63b200a690921ceb62c63db8"
 		},
 		{
+			"ImportPath": "github.com/docker/docker/plugin/getter",
+			"Comment": "docs-v1.12.0-rc4-2016-07-15-2051-g9db4698",
+			"Rev": "9db46989294621ca63b200a690921ceb62c63db8"
+		},
+		{
 			"ImportPath": "github.com/docker/docker/reference",
 			"Comment": "docs-v1.12.0-rc4-2016-07-15-2051-g9db4698",
 			"Rev": "9db46989294621ca63b200a690921ceb62c63db8"
