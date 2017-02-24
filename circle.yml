@@ -1,0 +1,31 @@
+machine:
+  pre:
+    
+    # install newer docker
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0    
+  
+  services:
+    - docker    
+
+dependencies:
+  override:
+    - echo skip    
+
+compile:
+  override:
+
+    # build go binary inside container
+    - docker run -it --rm -v $(pwd):/go/src/app jritsema/golang-build:1.7 /go/src/app/build.sh
+
+test:
+  override:
+    - echo skip
+
+deployment:
+
+  prerelease:
+    branch: master
+    commands:
+
+      # deploy to github releases
+      - docker run -it --rm -v $(pwd):/go/src/app -e GITHUB_TOKEN=${GITHUB_TOKEN} -e CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME} -e CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME} -e TAG=$(git describe --tags) jritsema/golang-build:1.7 /go/src/app/deploy.sh
