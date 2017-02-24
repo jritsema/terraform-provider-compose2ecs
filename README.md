@@ -1,6 +1,6 @@
 ### terraform-provider-compose2ecs
 
-A [terraform](terraform.io) plugin containing a datasource that can transform a [docker compose file](https://docs.docker.com/compose/compose-file/) into an [ecs task definition](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html).
+A [terraform](https://terraform.io) plugin containing a datasource that can transform a [docker compose file](https://docs.docker.com/compose/compose-file/) into an [ecs task definition](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html).
 
 [![CircleCI](https://circleci.com/gh/jritsema/terraform-provider-compose2ecs/tree/master.svg?style=shield)](https://circleci.com/gh/jritsema/terraform-provider-compose2ecs/tree/master)  
 
@@ -10,7 +10,7 @@ A [terraform](terraform.io) plugin containing a datasource that can transform a 
 Download and install the [plugin](https://github.com/jritsema/terraform-provider-compose2ecs/releases)
 
 ```
-$ wget -O /usr/local/bin/terraform-provider-compose2ecs https://github.com/jritsema/terraform-provider-compose2ecs/releases/download/v0.1.0-1-g7bcb595/ncd_darwin_amd64 && chmod +x /usr/local/bin/terraform-provider-compose2ecs
+$ wget -O /usr/local/bin/terraform-provider-compose2ecs https://github.com/jritsema/terraform-provider-compose2ecs/releases/download/1.0/ncd_darwin_amd64 && chmod +x /usr/local/bin/terraform-provider-compose2ecs
 ```
 
 ```terraform
