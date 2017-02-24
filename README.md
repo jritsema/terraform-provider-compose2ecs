@@ -2,7 +2,8 @@
 
 A [terraform](terraform.io) plugin containing a datasource that can transform a [docker compose file](https://docs.docker.com/compose/compose-file/) into an [ecs task definition](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html).
 
-![CircleCI](https://circleci.com/gh/jritsema/terraform-provider-compose2ecs.svg?style=shield&circle-token=:circle-token)
+[![CircleCI](https://circleci.com/gh/jritsema/terraform-provider-compose2ecs/tree/master.svg?style=shield)](https://circleci.com/gh/jritsema/terraform-provider-compose2ecs/tree/master)  
+
 
 #### usage
 
