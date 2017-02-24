@@ -7,10 +7,10 @@ A [terraform](https://terraform.io) plugin containing a datasource that can tran
 
 #### usage
 
-Download and install the [plugin](https://github.com/jritsema/terraform-provider-compose2ecs/releases)
+Download and install the [plugin](https://github.com/jritsema/terraform-provider-compose2ecs/releases), either by putting the binary next to your terraform binary or by addding it to your `~/.terraformrc` as documented [here](https://www.terraform.io/docs/plugins/basics.html).
 
 ```
-$ wget -O /usr/local/bin/terraform-provider-compose2ecs https://github.com/jritsema/terraform-provider-compose2ecs/releases/download/0.1.1/ncd_darwin_amd64 && chmod +x /usr/local/bin/terraform-provider-compose2ecs
+$ wget -O /usr/local/bin/terraform/terraform-provider-compose2ecs https://github.com/jritsema/terraform-provider-compose2ecs/releases/download/0.1.1/ncd_darwin_amd64 && chmod +x /usr/local/bin/terraform/terraform-provider-compose2ecs
 ```
 
 ```terraform
