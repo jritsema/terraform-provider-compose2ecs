@@ -6,7 +6,11 @@ A [terraform](terraform.io) plugin containing a datasource that can transform a 
 
 #### usage
 
-install the [plugin binary](https://github.com/jritsema/terraform-provider-compose2ecs/releases)
+Download and install the [plugin](https://github.com/jritsema/terraform-provider-compose2ecs/releases)
+
+```
+$ wget -O /usr/local/bin/terraform-provider-compose2ecs https://github.com/jritsema/terraform-provider-compose2ecs/releases/download/v0.1.0-1-g7bcb595/ncd_darwin_amd64 && chmod +x /usr/local/bin/terraform-provider-compose2ecs
+```
 
 ```terraform
 data "compose2ecs" "compose" {}
