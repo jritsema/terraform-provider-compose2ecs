@@ -13,6 +13,18 @@ Download and install the [plugin](https://github.com/jritsema/terraform-provider
 $ wget -O /usr/local/bin/terraform/terraform-provider-compose2ecs https://github.com/jritsema/terraform-provider-compose2ecs/releases/download/0.1.1/ncd_darwin_amd64 && chmod +x /usr/local/bin/terraform/terraform-provider-compose2ecs
 ```
 
+Now use it by declaring a data resource.
+
+```terraform
+data "compose2ecs" "compose" {}
+
+output "container_definitions" {
+  value = "${data.compose2ecs.compose.container_definitions}"
+}
+```
+
+Use it with an ECS task definition (`aws_ecs_task_definition`) resource.
+
 ```terraform
 data "compose2ecs" "compose" {}
 
