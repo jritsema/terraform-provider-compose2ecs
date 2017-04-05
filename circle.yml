@@ -30,4 +30,4 @@ deployment:
     commands:
 
       # deploy to github releases
-      - docker run -it --rm -v $(pwd):/go/src/app -e GITHUB_TOKEN=${GITHUB_TOKEN} -e CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME} -e CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME} -e TAG=$(git describe --tags) jritsema/golang-build:{GOLANG_BUILD_VERSION} /go/src/app/deploy.sh
+      - docker run -it --rm -v $(pwd):/go/src/app -e GITHUB_TOKEN=${GITHUB_TOKEN} -e CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME} -e CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME} -e TAG=$(git describe --tags) jritsema/golang-build:${GOLANG_BUILD_VERSION} /go/src/app/deploy.sh
